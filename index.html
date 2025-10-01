@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regalo Hot Wheels Formal</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #1c1c1c, #000);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    h1 {
+      position: absolute;
+      top: 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #e8e8e8;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0,153,255,0.7);
+      letter-spacing: 1px;
+    }
+
+    .scene {
+      width: 340px;
+      height: 400px;
+      perspective: 1000px;
+      position: relative;
+    }
+
+    .box {
+      width: 100%;
+      height: 320px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 18s linear infinite;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .face {
+      position: absolute;
+      width: 340px;
+      height: 320px;
+      background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+      border: 2px solid #666;
+      box-shadow: inset 0 0 15px rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+
+    .front  { transform: rotateY(0deg) translateZ(160px); }
+    .back   { transform: rotateY(180deg) translateZ(160px); }
+    .right  { transform: rotateY(90deg) translateZ(160px); }
+    .left   { transform: rotateY(-90deg) translateZ(160px); }
+    .top    { transform: rotateX(90deg) translateZ(160px); background: linear-gradient(145deg, #444, #222); transform-origin: bottom; transition: transform 1s; }
+    .bottom { transform: rotateX(-90deg) translateZ(160px); background: #111; }
+
+    @keyframes rotate {
+      from { transform: rotateY(0deg); }
+      to   { transform: rotateY(360deg); }
+    }
+
+    /* Imagen del carro */
+    .car {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -100%) scale(0);
+      opacity: 0;
+      transition: transform 1s cubic-bezier(.68,-0.55,.27,1.55), opacity 1s ease-out;
+      max-width: 270px;
+      max-height: 160px;
+      z-index: 5;
+      filter: drop-shadow(0 0 15px rgba(0,153,255,0.8));
+      border-radius: 10px;
+    }
+
+    /* Mensaje debajo del carro */
+    .message {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #f8f8f8;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+      opacity: 0;
+      transition: opacity 1.5s ease-out;
+      z-index: 6;
+      line-height: 1.6;
+      padding: 10px;
+    }
+
+    /* Estado abierto */
+    .open .top {
+      transform: rotateX(-150deg) translateZ(160px);
+    }
+    .open + .car {
+      transform: translate(-50%, -100%) scale(1);
+      opacity: 1;
+    }
+    .open ~ .message {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Para Ti, Hermano – Con Aprecio</h1>
+
+  <div class="scene">
+    <div class="box" id="giftBox">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face right"></div>
+      <div class="face left"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+
+    <!-- Imagen del carro -->
+    <img class="car" src="1.jpg" alt="Hot Wheels Azul">
+
+    <!-- Mensaje bonito -->
+    <div class="message">
+      🚗 Aquí tienes tu Hot Wheels Azul 🏁 <br>
+      🌟 Porque eres más que un hermano, eres un amigo, <br>
+      un apoyo y mi orgullo. <br>
+      Que este regalo siempre te recuerde <br>
+      lo valioso que eres para mí. 💙 <br><br>
+      📅 Con cariño, este 30 de septiembre ✨
+    </div>
+  </div>
+
+  <script>
+    const box = document.getElementById("giftBox");
+    box.addEventListener("click", () => {
+      box.classList.toggle("open");
+    });
+  </script>
+
+</body>
+</html>
